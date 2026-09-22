@@ -1,6 +1,6 @@
-# [Project name]
+# SkillShare Learning Platform
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+SkillShare helps people discover, publish, and complete practical courses made from videos, presentations, and quizzes.
 
 ## Run & Operate
 
@@ -22,23 +22,32 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/skillshare/src/App.tsx` — learner, teacher, course builder, and auth-facing UI.
+- `artifacts/skillshare/src/index.css` — SkillShare's saffron, ink, and paper visual language.
+- `lib/api-spec/openapi.yaml` — source of truth for course, completion, rating, and teacher summary APIs.
+- `artifacts/api-server/src/routes/courses.ts` — course discovery and publishing service.
+- `artifacts/api-server/src/middlewares/clerkProxyMiddleware.ts` — managed Clerk production proxy.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Clerk provides managed web authentication with Google-capable sign-in screens; phone numbers are surfaced as onboarding context because managed Clerk phone SMS sign-in is not currently supported.
+- The course API is contract-first through OpenAPI and generated React Query hooks.
+- Courses are ordered by rating by default; rating mutations require a recorded completion.
+- Video and presentation blocks store source links and metadata; file uploads can be added later with object storage without changing the course contract.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Public landing page with sign-in and sign-up entry points.
+- Learner portal with search, rating-sorted discovery, mixed-content course detail, completion, and completion-gated ratings.
+- Teacher portal with publishing metrics and a course builder for video, presentation, and quiz blocks.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+No additional preferences recorded.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Artifact builds need the workflow-provided `PORT` and `BASE_PATH` values; use the managed workflow or pass both explicitly for a local build.
 
 ## Pointers
 

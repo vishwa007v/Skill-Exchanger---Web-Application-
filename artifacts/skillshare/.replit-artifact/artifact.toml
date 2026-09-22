@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "SkillShare Learning Platform"
+description = "A learning marketplace where skilled creators publish video tutorials, presentations, and quizzes, while learners discover, complete, and rate courses."
+version = "1.0.0"
+id = "artifacts/skillshare"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24629
+
+[services.development]
+run = "pnpm --filter @workspace/skillshare run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/skillshare", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/skillshare/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24629"
+BASE_PATH = "/"

@@ -10,6 +10,12 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: courses
+    description: Course discovery and publishing
+  - name: learner
+    description: Learner progress and ratings
+  - name: teacher
+    description: Teacher workspace summaries
 paths:
   /healthz:
     get:
@@ -24,6 +30,125 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /courses:
+    get:
+      operationId: listCourses
+      tags: [courses]
+      summary: List courses
+      description: Returns published courses ordered by learner rating.
+      parameters:
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [rating, newest]
+            default: rating
+      responses:
+        "200":
+          description: Published courses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Course"
+    post:
+      operationId: createCourse
+      tags: [courses]
+      summary: Create a course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourseInput"
+      responses:
+        "201":
+          description: Created course
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+  /courses/{courseId}:
+    get:
+      operationId: getCourse
+      tags: [courses]
+      summary: Get a course
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Course detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+        "404":
+          description: Course not found
+  /courses/{courseId}/complete:
+    post:
+      operationId: completeCourse
+      tags: [learner]
+      summary: Mark a course complete
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Completion status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Completion"
+  /courses/{courseId}/rating:
+    post:
+      operationId: rateCourse
+      tags: [learner]
+      summary: Rate a completed course
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RatingInput"
+      responses:
+        "200":
+          description: Updated course
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Course"
+  /teacher/summary:
+    get:
+      operationId: getTeacherSummary
+      tags: [teacher]
+      summary: Get teacher workspace summary
+      responses:
+        "200":
+          description: Teacher metrics and recent courses
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeacherSummary"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +158,125 @@ components:
           type: string
       required:
         - status
+    ContentBlock:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [video, presentation, quiz]
+        title:
+          type: string
+        description:
+          type: string
+        duration:
+          type: integer
+        source:
+          type: ["string", "null"]
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/QuizQuestion"
+      required: [id, type, title, description, duration, source, questions]
+    QuizQuestion:
+      type: object
+      properties:
+        prompt:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+        answer:
+          type: integer
+      required: [prompt, options, answer]
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        instructor:
+          type: string
+        instructorInitials:
+          type: string
+        rating:
+          type: number
+          format: float
+        ratingCount:
+          type: integer
+        duration:
+          type: integer
+        students:
+          type: integer
+        accent:
+          type: string
+        contents:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContentBlock"
+        createdAt:
+          type: string
+      required: [id, title, description, category, level, instructor, instructorInitials, rating, ratingCount, duration, students, accent, contents, createdAt]
+    CourseInput:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        instructor:
+          type: string
+        contents:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContentBlock"
+      required: [title, description, category, level, instructor, contents]
+    RatingInput:
+      type: object
+      properties:
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+      required: [rating]
+    Completion:
+      type: object
+      properties:
+        courseId:
+          type: string
+        completed:
+          type: boolean
+      required: [courseId, completed]
+    TeacherSummary:
+      type: object
+      properties:
+        publishedCount:
+          type: integer
+        totalLearners:
+          type: integer
+        averageRating:
+          type: number
+          format: float
+        completionRate:
+          type: integer
+        recentCourses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Course"
+      required: [publishedCount, totalLearners, averageRating, completionRate, recentCourses]
 

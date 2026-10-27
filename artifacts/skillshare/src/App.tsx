@@ -23,6 +23,8 @@ import {
   Search,
   Sparkles,
   Star,
+  Moon,
+  Sun,
   Users,
   X,
 } from 'lucide-react';
@@ -76,7 +78,7 @@ const demoCourses: Course[] = [
     ratingCount: 128,
     duration: 142,
     students: 1840,
-    accent: '#E5A845',
+    accent: '#14B8C4',
     createdAt: '2025-02-18T00:00:00.000Z',
     contents: [
       { id: 'ux-1', type: ContentBlockType.video, title: 'Start with the edges', description: 'Learn to spot the quiet moments where products lose people.', duration: 18, source: null, questions: [] },
@@ -96,7 +98,7 @@ const demoCourses: Course[] = [
     ratingCount: 93,
     duration: 96,
     students: 1120,
-    accent: '#D87862',
+    accent: '#7B6FE8',
     createdAt: '2025-01-30T00:00:00.000Z',
     contents: [
       { id: 'pres-1', type: ContentBlockType.video, title: 'One room, one idea', description: 'A warm-up for cutting the noise from your next talk.', duration: 16, source: null, questions: [] },
@@ -115,7 +117,7 @@ const demoCourses: Course[] = [
     ratingCount: 76,
     duration: 121,
     students: 870,
-    accent: '#79A8A0',
+    accent: '#50C7B7',
     createdAt: '2025-02-06T00:00:00.000Z',
     contents: [
       { id: 'money-1', type: ContentBlockType.presentation, title: 'Your month at a glance', description: 'See where the money goes before you ask it to change.', duration: 22, source: null, questions: [] },
@@ -134,7 +136,7 @@ const demoCourses: Course[] = [
     ratingCount: 58,
     duration: 188,
     students: 642,
-    accent: '#B98964',
+    accent: '#4FA3B1',
     createdAt: '2025-01-12T00:00:00.000Z',
     contents: [
       { id: 'wood-1', type: ContentBlockType.video, title: 'Read the grain', description: 'The small orientation choice that makes the rest easier.', duration: 25, source: null, questions: [] },
@@ -152,13 +154,13 @@ const levelLabel: Record<string, string> = {
 function Logo({ inverse = false }: { inverse?: boolean }) {
   return (
     <Link href="/" className="focus-ring inline-flex items-center gap-2.5" data-testid="link-logo">
-      <img src={`${basePath}/logo.svg`} alt="SkillShare" className="h-9 w-9" data-testid="img-logo" />
-      <span className={`font-serif text-xl font-bold tracking-[-0.04em] ${inverse ? 'text-[hsl(var(--background))]' : 'text-foreground'}`}>skillshare</span>
+      <img src={`${basePath}/logo.svg`} alt="Skill Exchanger" className="h-9 w-9" data-testid="img-logo" />
+      <span className={`font-serif text-xl font-bold tracking-[-0.04em] ${inverse ? 'text-[hsl(var(--background))]' : 'text-foreground'}`}>skill exchanger</span>
     </Link>
   );
 }
 
-function Avatar({ initials, accent = '#E5A845' }: { initials: string; accent?: string }) {
+function Avatar({ initials, accent = '#14B8C4' }: { initials: string; accent?: string }) {
   return (
     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-background text-xs font-bold text-foreground" style={{ backgroundColor: accent }} data-testid={`avatar-${initials}`}>
       {initials}
@@ -173,6 +175,28 @@ function StarRating({ rating, count, compact = false }: { rating: number; count?
       <strong>{rating.toFixed(1)}</strong>
       {count !== undefined && <span className="text-muted-foreground">({count})</span>}
     </span>
+  );
+}
+
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(() => window.localStorage.getItem('skill-exchanger-theme') === 'dark');
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+    window.localStorage.setItem('skill-exchanger-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
+
+  return (
+    <button
+      type="button"
+      onClick={() => setIsDark((current) => !current)}
+      className="focus-ring fixed right-5 top-5 z-[60] inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-lg backdrop-blur transition-transform hover:-translate-y-0.5"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      data-testid="button-theme-toggle"
+    >
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
   );
 }
 
@@ -205,7 +229,7 @@ function LandingPage() {
             Learn the thing.<br /><span className="text-[hsl(var(--accent))]">Make it yours.</span>
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-8 text-muted-foreground md:text-xl">
-            SkillShare is a warm, focused studio for useful knowledge — taught by people who have done the work and want to show you how.
+            Skill Exchanger is a focused studio for useful knowledge — taught by people who have done the work and want to show you how.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <Link href="/sign-up" className="focus-ring group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 font-bold text-primary-foreground transition-transform hover:-translate-y-1" data-testid="link-hero-sign-up">
@@ -217,7 +241,7 @@ function LandingPage() {
           </div>
           <div className="mt-12 flex items-center gap-3 text-sm text-muted-foreground">
             <div className="flex -space-x-2">
-              <Avatar initials="MP" accent="#E5A845" /><Avatar initials="TN" accent="#D87862" /><Avatar initials="JR" accent="#79A8A0" />
+              <Avatar initials="MP" accent="#14B8C4" /><Avatar initials="TN" accent="#7B6FE8" /><Avatar initials="JR" accent="#50C7B7" />
             </div>
             <span><strong className="text-foreground">2,400+</strong> curious people learning in public</span>
           </div>
@@ -225,7 +249,7 @@ function LandingPage() {
         <div className="studio-rise studio-rise-delay-2 relative min-h-[420px] lg:min-h-[600px]">
           <div className="absolute right-4 top-2 h-[76%] w-[76%] rounded-[3rem] bg-[hsl(var(--primary))] lg:right-10" />
           <div className="absolute bottom-10 left-4 z-10 w-[74%] rotate-[-4deg] rounded-[2rem] border-2 border-foreground/15 bg-card p-5 shadow-xl lg:left-2">
-            <div className="course-swatch flex aspect-[1.3/1] items-end rounded-[1.35rem] p-5" style={{ '--swatch': '#183B4F' } as React.CSSProperties}>
+            <div className="course-swatch flex aspect-[1.3/1] items-end rounded-[1.35rem] p-5" style={{ '--swatch': '#0B3141' } as React.CSSProperties}>
               <div className="flex w-full items-end justify-between text-background">
                 <div><p className="font-mono text-[10px] uppercase tracking-[.18em] opacity-70">Studio session 01</p><p className="mt-2 font-serif text-2xl font-semibold leading-none">Field notes<br />for better UX</p></div>
                 <span className="rounded-full bg-background/15 p-3"><Play className="h-5 w-5 fill-current" /></span>
@@ -273,7 +297,7 @@ function AppHeader({ teacher = false }: { teacher?: boolean }) {
     <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 lg:px-10">
         <div className="flex items-center gap-8"><Logo /><nav className="hidden items-center gap-1 md:flex">{[['/learner', 'Discover'], ['/teacher', 'Teach']].map(([href, label]) => <Link key={href} href={href} className={`rounded-full px-3 py-2 text-sm font-semibold transition-colors hover:bg-muted ${teacher === (href === '/teacher') ? 'bg-muted text-foreground' : 'text-muted-foreground'}`} data-testid={`link-nav-${label.toLowerCase()}`}>{label}</Link>)}</nav></div>
-        <div className="flex items-center gap-3"><button type="button" className="focus-ring rounded-full p-2 text-muted-foreground hover:bg-muted md:hidden" onClick={() => document.getElementById('mobile-nav')?.classList.toggle('hidden')} data-testid="button-mobile-menu"><Menu className="h-5 w-5" /></button><span className="hidden text-right text-sm md:block"><strong className="block">{user?.firstName || 'Learner'}</strong><span className="text-xs text-muted-foreground">{teacher ? 'Teacher studio' : 'Learning shelf'}</span></span><Avatar initials={initials} accent="#E5A845" /><button type="button" className="focus-ring hidden rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted md:block" onClick={() => signOut()} data-testid="button-sign-out"><LogOut className="h-4 w-4" /></button></div>
+        <div className="flex items-center gap-3"><button type="button" className="focus-ring rounded-full p-2 text-muted-foreground hover:bg-muted md:hidden" onClick={() => document.getElementById('mobile-nav')?.classList.toggle('hidden')} data-testid="button-mobile-menu"><Menu className="h-5 w-5" /></button><span className="hidden text-right text-sm md:block"><strong className="block">{user?.firstName || 'Learner'}</strong><span className="text-xs text-muted-foreground">{teacher ? 'Teacher studio' : 'Learning shelf'}</span></span><Avatar initials={initials} accent="#14B8C4" /><button type="button" className="focus-ring hidden rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted md:block" onClick={() => signOut()} data-testid="button-sign-out"><LogOut className="h-4 w-4" /></button></div>
       </div>
       <div id="mobile-nav" className="hidden border-t border-border bg-card px-5 py-3 md:hidden"><div className="flex gap-2"><Link href="/learner" className="rounded-full bg-muted px-3 py-2 text-sm font-semibold" data-testid="link-mobile-discover">Discover</Link><Link href="/teacher" className="rounded-full bg-muted px-3 py-2 text-sm font-semibold" data-testid="link-mobile-teach">Teach</Link></div></div>
     </header>
@@ -334,22 +358,481 @@ function CourseDetailPage() {
   const [completed, setCompleted] = useState(false);
   const [rating, setRating] = useState(0);
   const [rated, setRated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [selectedQuizAnswers, setSelectedQuizAnswers] = useState<Record<number, number>>({});
+  const [quizScore, setQuizScore] = useState<{ score: number; total: number; passed: boolean } | null>(null);
+
+  // Restore user completion & rating progress from backend on load
+  useEffect(() => {
+    if (!course?.id) return;
+    fetch(`${basePath}/api/courses/${course.id}/progress`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data) {
+          if (data.completed) setCompleted(true);
+          if (data.rated) {
+            setRated(true);
+            if (data.userRating) setRating(data.userRating);
+          }
+        }
+      })
+      .catch(() => {});
+  }, [course?.id]);
+
   const active = course.contents[activeBlock] ?? course.contents[0];
-  const markComplete = () => { completeMutation.mutate({ courseId: course.id }, { onSuccess: () => { setCompleted(true); queryClient.invalidateQueries({ queryKey: getGetCourseQueryKey(course.id) }); }, onError: () => setCompleted(true) }); };
-  const submitRating = () => { if (!rating) return; rateMutation.mutate({ courseId: course.id, data: { rating } }, { onSuccess: () => { setRated(true); queryClient.invalidateQueries({ queryKey: getGetCourseQueryKey(course.id) }); queryClient.invalidateQueries({ queryKey: getListCoursesQueryKey({ sort: 'rating' }) }); }, onError: () => setRated(true) }); };
-  if (courseQuery.isLoading) return <div className="min-h-[100dvh]"><AppHeader /><div className="mx-auto max-w-7xl px-5 py-14 lg:px-10"><div className="h-12 w-2/3 animate-pulse rounded bg-muted" /><div className="mt-6 h-80 animate-pulse rounded-[2rem] bg-muted" /></div></div>;
-  return <div className="min-h-[100dvh]"><AppHeader /><main className="mx-auto max-w-7xl px-5 py-8 lg:px-10 lg:py-12"><Link href="/learner" className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground" data-testid="link-back-courses"><ArrowLeft className="h-4 w-4" />Back to the shelf</Link><div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_.8fr]"><section><div className="course-swatch relative flex min-h-[360px] items-end overflow-hidden rounded-[2rem] p-7 md:min-h-[490px] md:p-10" style={{ '--swatch': course.accent } as React.CSSProperties}><div className="absolute right-12 top-10 h-36 w-36 rounded-full border border-background/20" /><div className="absolute right-24 top-24 h-20 w-20 rounded-full bg-background/10" /><div className="relative max-w-xl text-background"><span className="font-mono text-[10px] font-bold uppercase tracking-[.2em]">{course.category} · {levelLabel[course.level]}</span><h1 className="mt-4 font-serif text-5xl leading-[.94] tracking-[-.06em] md:text-7xl">{course.title}</h1><p className="mt-6 max-w-lg text-base leading-7 text-background/80">{course.description}</p><div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold"><span className="inline-flex items-center gap-2"><Avatar initials={course.instructorInitials} accent="#F4AD4B" />{course.instructor}</span><span className="inline-flex items-center gap-1.5"><Clock3 className="h-4 w-4" />{Math.floor(course.duration / 60)}h {course.duration % 60}m</span><StarRating rating={course.rating} count={course.ratingCount} /></div></div></div><div className="mt-8"><div className="mb-4 flex items-center justify-between"><div><p className="font-mono text-[10px] font-bold uppercase tracking-[.18em] text-muted-foreground">Course path</p><h2 className="mt-1 font-serif text-3xl tracking-[-.04em]">Move through the studio</h2></div><span className="font-mono text-xs text-muted-foreground">{course.contents.length} parts</span></div><div className="space-y-2">{course.contents.map((block, index) => <button type="button" key={block.id} onClick={() => setActiveBlock(index)} className={`focus-ring flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-colors ${activeBlock === index ? 'border-foreground bg-foreground text-background' : 'border-border bg-card hover:bg-muted'}`} data-testid={`button-content-${block.id}`}><span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${activeBlock === index ? 'bg-primary text-primary-foreground' : 'bg-secondary'}`}><BlockIcon type={block.type} /></span><span className="min-w-0 flex-1"><strong className="block text-sm">{index + 1}. {block.title}</strong><span className={`mt-1 block text-xs ${activeBlock === index ? 'text-background/65' : 'text-muted-foreground'}`}>{block.type} · {block.duration} min</span></span>{activeBlock === index && <Play className="h-4 w-4 fill-current" />}</button>)}</div></div></section><aside className="lg:pt-14"><div className="studio-paper sticky top-24 rounded-[1.5rem] border border-border p-6"><div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary"><BlockIcon type={active.type} /></span><div><p className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Now playing</p><h2 className="mt-1 font-serif text-2xl leading-none">{active.title}</h2></div></div><div className="mt-6 flex aspect-video items-center justify-center overflow-hidden rounded-2xl bg-foreground text-background"><div className="text-center"><div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground"><Play className="ml-1 h-6 w-6 fill-current" /></div><p className="mt-4 text-sm font-semibold">{active.type === 'quiz' ? 'Open the quiz' : 'Play this lesson'}</p><p className="mt-1 text-xs text-background/60">{active.duration} minutes</p></div></div><p className="mt-5 text-sm leading-6 text-muted-foreground">{active.description}</p><button type="button" onClick={markComplete} disabled={completed || completeMutation.isPending} className={`focus-ring mt-6 flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold transition-transform hover:-translate-y-0.5 disabled:cursor-default disabled:hover:translate-y-0 ${completed ? 'bg-secondary text-foreground' : 'bg-primary text-primary-foreground'}`} data-testid="button-complete-course">{completed ? <><Check className="h-4 w-4" />Course completed</> : completeMutation.isPending ? 'Saving your progress…' : 'Mark course complete'}</button>{completed && !rated && <div className="mt-6 border-t border-border pt-5"><p className="text-sm font-bold">How did it land?</p><p className="mt-1 text-xs leading-5 text-muted-foreground">Ratings open after you finish the course.</p><div className="mt-3 flex items-center gap-1">{[1, 2, 3, 4, 5].map((value) => <button type="button" key={value} onClick={() => setRating(value)} className="focus-ring rounded p-1" data-testid={`button-rate-${value}`}><Star className={`h-6 w-6 ${rating >= value ? 'fill-primary text-primary' : 'text-muted-foreground'}`} /></button>)}</div><button type="button" onClick={submitRating} disabled={!rating || rateMutation.isPending} className="focus-ring mt-3 w-full rounded-full bg-foreground px-4 py-2.5 text-xs font-bold text-background disabled:opacity-40" data-testid="button-submit-rating">{rateMutation.isPending ? 'Saving…' : 'Share rating'}</button></div>}{rated && <p className="mt-5 border-t border-border pt-5 text-sm font-semibold text-[hsl(var(--accent-foreground))]" data-testid="status-rating-saved">Thanks for the thoughtful rating.</p>}</div></aside></div></main></div>;
+
+  const markComplete = () => {
+    setErrorMessage(null);
+    completeMutation.mutate(
+      { courseId: course.id },
+      {
+        onSuccess: () => {
+          setCompleted(true);
+          queryClient.invalidateQueries({ queryKey: getGetCourseQueryKey(course.id) });
+          queryClient.invalidateQueries({ queryKey: getListCoursesQueryKey({ sort: 'rating' }) });
+        },
+        onError: (err: any) => {
+          setErrorMessage(err?.data?.error || err?.message || 'Could not complete course. Please try again.');
+        },
+      }
+    );
+  };
+
+  const submitRating = () => {
+    if (!rating) return;
+    setErrorMessage(null);
+    rateMutation.mutate(
+      { courseId: course.id, data: { rating } },
+      {
+        onSuccess: () => {
+          setRated(true);
+          queryClient.invalidateQueries({ queryKey: getGetCourseQueryKey(course.id) });
+          queryClient.invalidateQueries({ queryKey: getListCoursesQueryKey({ sort: 'rating' }) });
+        },
+        onError: (err: any) => {
+          setErrorMessage(err?.data?.error || err?.message || 'Could not submit rating. Please try again.');
+        },
+      }
+    );
+  };
+
+  const handleVerifyQuiz = () => {
+    if (!active?.questions || active.questions.length === 0) return;
+    let score = 0;
+    active.questions.forEach((q, idx) => {
+      if (selectedQuizAnswers[idx] === q.answer) {
+        score += 1;
+      }
+    });
+    const total = active.questions.length;
+    setQuizScore({ score, total, passed: score >= Math.ceil(total * 0.6) });
+  };
+
+  if (courseQuery.isLoading)
+    return (
+      <div className="min-h-[100dvh]">
+        <AppHeader />
+        <div className="mx-auto max-w-7xl px-5 py-14 lg:px-10">
+          <div className="h-12 w-2/3 animate-pulse rounded bg-muted" />
+          <div className="mt-6 h-80 animate-pulse rounded-[2rem] bg-muted" />
+        </div>
+      </div>
+    );
+
+  return (
+    <div className="min-h-[100dvh]">
+      <AppHeader />
+      <main className="mx-auto max-w-7xl px-5 py-8 lg:px-10 lg:py-12">
+        <Link
+          href="/learner"
+          className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
+          data-testid="link-back-courses"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to the shelf
+        </Link>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_.8fr]">
+          <section>
+            <div
+              className="course-swatch relative flex min-h-[360px] items-end overflow-hidden rounded-[2rem] p-7 md:min-h-[490px] md:p-10"
+              style={{ '--swatch': course.accent } as React.CSSProperties}
+            >
+              <div className="absolute right-12 top-10 h-36 w-36 rounded-full border border-background/20" />
+              <div className="absolute right-24 top-24 h-20 w-20 rounded-full bg-background/10" />
+              <div className="relative max-w-xl text-background">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[.2em]">
+                  {course.category} · {levelLabel[course.level]}
+                </span>
+                <h1 className="mt-4 font-serif text-5xl leading-[.94] tracking-[-.06em] md:text-7xl">
+                  {course.title}
+                </h1>
+                <p className="mt-6 max-w-lg text-base leading-7 text-background/80">
+                  {course.description}
+                </p>
+                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold">
+                  <span className="inline-flex items-center gap-2">
+                    <Avatar initials={course.instructorInitials} accent="#F4AD4B" />
+                    {course.instructor}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock3 className="h-4 w-4" />
+                    {Math.floor(course.duration / 60)}h {course.duration % 60}m
+                  </span>
+                  <StarRating rating={course.rating} count={course.ratingCount} />
+                </div>
+              </div>
+            </div>
+            <div className="mt-8">
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[.18em] text-muted-foreground">
+                    Course path
+                  </p>
+                  <h2 className="mt-1 font-serif text-3xl tracking-[-.04em]">
+                    Move through the studio
+                  </h2>
+                </div>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {course.contents.length} parts
+                </span>
+              </div>
+              <div className="space-y-2">
+                {course.contents.map((block, index) => (
+                  <button
+                    type="button"
+                    key={block.id}
+                    onClick={() => {
+                      setActiveBlock(index);
+                      setQuizScore(null);
+                    }}
+                    className={`focus-ring flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-colors ${activeBlock === index ? 'border-foreground bg-foreground text-background' : 'border-border bg-card hover:bg-muted'}`}
+                    data-testid={`button-content-${block.id}`}
+                  >
+                    <span
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${activeBlock === index ? 'bg-primary text-primary-foreground' : 'bg-secondary'}`}
+                    >
+                      <BlockIcon type={block.type} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <strong className="block text-sm">
+                        {index + 1}. {block.title}
+                      </strong>
+                      <span
+                        className={`mt-1 block text-xs ${activeBlock === index ? 'text-background/65' : 'text-muted-foreground'}`}
+                      >
+                        {block.type} · {block.duration} min
+                      </span>
+                    </span>
+                    {activeBlock === index && <Play className="h-4 w-4 fill-current" />}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
+          <aside className="lg:pt-14">
+            <div className="studio-paper sticky top-24 rounded-[1.5rem] border border-border p-6">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
+                  <BlockIcon type={active.type} />
+                </span>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">
+                    Now playing
+                  </p>
+                  <h2 className="mt-1 font-serif text-2xl leading-none">{active.title}</h2>
+                </div>
+              </div>
+
+              {/* Dynamic Interactive Media Player */}
+              {active.type === 'video' && active.source ? (
+                <div className="mt-6 aspect-video overflow-hidden rounded-2xl bg-black">
+                  <iframe
+                    src={active.source}
+                    title={active.title}
+                    className="h-full w-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : active.type === 'presentation' && active.source ? (
+                <div className="mt-6 aspect-video overflow-hidden rounded-2xl bg-black">
+                  <iframe
+                    src={active.source}
+                    title={active.title}
+                    className="h-full w-full border-0"
+                    allowFullScreen
+                  />
+                </div>
+              ) : active.type === 'quiz' ? (
+                <div className="mt-6 rounded-2xl border border-border bg-card p-5">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[.16em] text-primary">
+                    Interactive Quiz Check
+                  </p>
+                  {active.questions.map((q, qIdx) => (
+                    <div key={qIdx} className="mt-4 border-t border-border pt-4">
+                      <p className="text-sm font-semibold">{qIdx + 1}. {q.prompt}</p>
+                      <div className="mt-3 grid gap-2">
+                        {q.options.map((opt, optIdx) => (
+                          <button
+                            type="button"
+                            key={optIdx}
+                            onClick={() =>
+                              setSelectedQuizAnswers((prev) => ({ ...prev, [qIdx]: optIdx }))
+                            }
+                            className={`rounded-xl border px-3 py-2 text-left text-xs font-medium transition-colors ${selectedQuizAnswers[qIdx] === optIdx ? 'border-primary bg-primary/10 text-foreground' : 'border-border bg-background hover:bg-muted'}`}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
+                    <button
+                      type="button"
+                      onClick={handleVerifyQuiz}
+                      className="rounded-full bg-secondary px-4 py-2 text-xs font-bold text-foreground hover:bg-secondary/80"
+                    >
+                      Check answers
+                    </button>
+                    {quizScore && (
+                      <span className="text-xs font-bold">
+                        Score: {quizScore.score}/{quizScore.total}{' '}
+                        {quizScore.passed ? '🎉 (Passed!)' : '— Try again'}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-6 flex aspect-video items-center justify-center overflow-hidden rounded-2xl bg-foreground text-background">
+                  <div className="text-center">
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <Play className="ml-1 h-6 w-6 fill-current" />
+                    </div>
+                    <p className="mt-4 text-sm font-semibold">
+                      Play this lesson
+                    </p>
+                    <p className="mt-1 text-xs text-background/60">{active.duration} minutes</p>
+                  </div>
+                </div>
+              )}
+
+              <p className="mt-5 text-sm leading-6 text-muted-foreground">{active.description}</p>
+
+              {errorMessage && (
+                <div className="mt-4 rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive">
+                  {errorMessage}
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={markComplete}
+                disabled={completed || completeMutation.isPending}
+                className={`focus-ring mt-6 flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold transition-transform hover:-translate-y-0.5 disabled:cursor-default disabled:hover:translate-y-0 ${completed ? 'bg-secondary text-foreground' : 'bg-primary text-primary-foreground'}`}
+                data-testid="button-complete-course"
+              >
+                {completed ? (
+                  <>
+                    <Check className="h-4 w-4" />
+                    Course completed
+                  </>
+                ) : completeMutation.isPending ? (
+                  'Saving your progress…'
+                ) : (
+                  'Mark course complete'
+                )}
+              </button>
+
+              {completed && !rated && (
+                <div className="mt-6 border-t border-border pt-5">
+                  <p className="text-sm font-bold">How did it land?</p>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                    Ratings open after you finish the course.
+                  </p>
+                  <div className="mt-3 flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <button
+                        type="button"
+                        key={value}
+                        onClick={() => setRating(value)}
+                        className="focus-ring rounded p-1"
+                        data-testid={`button-rate-${value}`}
+                      >
+                        <Star
+                          className={`h-6 w-6 ${rating >= value ? 'fill-primary text-primary' : 'text-muted-foreground'}`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={submitRating}
+                    disabled={!rating || rateMutation.isPending}
+                    className="focus-ring mt-3 w-full rounded-full bg-foreground px-4 py-2.5 text-xs font-bold text-background disabled:opacity-40"
+                    data-testid="button-submit-rating"
+                  >
+                    {rateMutation.isPending ? 'Saving…' : 'Share rating'}
+                  </button>
+                </div>
+              )}
+
+              {rated && (
+                <p
+                  className="mt-5 border-t border-border pt-5 text-sm font-semibold text-[hsl(var(--accent-foreground))]"
+                  data-testid="status-rating-saved"
+                >
+                  Thanks for the thoughtful rating.
+                </p>
+              )}
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+  );
 }
 
-function Metric({ label, value, note, icon: Icon }: { label: string; value: string; note: string; icon: typeof Users }) {
-  return <div className="rounded-2xl border border-border bg-card p-5"><div className="flex items-center justify-between text-muted-foreground"><span className="font-mono text-[10px] font-bold uppercase tracking-[.16em]">{label}</span><Icon className="h-4 w-4" /></div><p className="mt-8 font-serif text-5xl tracking-[-.07em]">{value}</p><p className="mt-2 text-xs text-muted-foreground">{note}</p></div>;
+function Metric({
+  label,
+  value,
+  note,
+  icon: Icon,
+}: {
+  label: string;
+  value: string;
+  note: string;
+  icon: typeof Users;
+}) {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-5">
+      <div className="flex items-center justify-between text-muted-foreground">
+        <span className="font-mono text-[10px] font-bold uppercase tracking-[.16em]">{label}</span>
+        <Icon className="h-4 w-4" />
+      </div>
+      <p className="mt-8 font-serif text-5xl tracking-[-.07em]">{value}</p>
+      <p className="mt-2 text-xs text-muted-foreground">{note}</p>
+    </div>
+  );
 }
 
 function TeacherPage() {
-  const summaryQuery = useGetTeacherSummary({ query: { queryKey: getGetTeacherSummaryQueryKey() } });
+  const summaryQuery = useGetTeacherSummary({
+    query: { queryKey: getGetTeacherSummaryQueryKey() },
+  });
   const summary = summaryQuery.data;
   const recent = summary?.recentCourses ?? demoCourses.slice(0, 3);
-  return <div className="min-h-[100dvh]"><AppHeader teacher /><main className="mx-auto max-w-7xl px-5 py-10 lg:px-10 lg:py-14"><div className="flex flex-col justify-between gap-7 md:flex-row md:items-end"><div><p className="font-mono text-[10px] font-bold uppercase tracking-[.2em] text-[hsl(var(--accent-foreground))]">Teacher studio</p><h1 className="mt-3 font-serif text-6xl tracking-[-.07em]">Make knowledge move.</h1><p className="mt-4 max-w-lg leading-7 text-muted-foreground">A quiet dashboard for the work behind a useful course.</p></div><Link href="/teacher/new" className="focus-ring inline-flex items-center justify-center gap-2 self-start rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1 md:self-auto" data-testid="link-create-course"><Plus className="h-4 w-4" />Create a course</Link></div><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{summaryQuery.isLoading ? [1, 2, 3, 4].map((item) => <div key={item} className="h-40 animate-pulse rounded-2xl bg-muted" />) : <><Metric label="Published" value={String(summary?.publishedCount ?? 12)} note="courses in the studio" icon={Layers3} /><Metric label="Learners" value={String(summary?.totalLearners ?? '2,430')} note="people reached so far" icon={Users} /><Metric label="Avg. rating" value={(summary?.averageRating ?? 4.8).toFixed(1)} note="from completed courses" icon={Star} /><Metric label="Completion" value={`${summary?.completionRate ?? 76}%`} note="learners seeing it through" icon={BarChart3} /></>}</div><div className="mt-14 flex items-end justify-between border-b border-border pb-4"><div><p className="font-mono text-[10px] font-bold uppercase tracking-[.18em] text-muted-foreground">Your recent courses</p><h2 className="mt-2 font-serif text-3xl">Keep the shelf fresh.</h2></div><Link href="/teacher/new" className="hidden items-center gap-2 text-sm font-bold md:flex" data-testid="link-add-course-inline">Add another <ArrowRight className="h-4 w-4" /></Link></div><div className="mt-6 grid gap-4 lg:grid-cols-3">{recent.map((course) => <Link href={`/learner/course/${course.id}`} className="group focus-ring flex gap-4 rounded-2xl border border-border bg-card p-3 transition-transform hover:-translate-y-1" key={course.id} data-testid={`card-teacher-course-${course.id}`}><div className="course-swatch h-28 w-28 shrink-0 rounded-xl" style={{ '--swatch': course.accent } as React.CSSProperties} /><div className="flex min-w-0 flex-1 flex-col justify-between py-1"><div><p className="font-mono text-[9px] uppercase tracking-[.15em] text-muted-foreground">{course.category}</p><h3 className="mt-1 line-clamp-2 font-serif text-xl leading-tight">{course.title}</h3></div><div className="flex items-center justify-between text-xs"><StarRating rating={course.rating} compact /><span className="text-muted-foreground">{course.students.toLocaleString()} learners</span></div></div></Link>)}</div>{summaryQuery.isError && <p className="mt-5 text-xs text-muted-foreground" data-testid="status-teacher-demo">Showing studio sample metrics while your teacher summary reconnects.</p>}</main></div>;
+  return (
+    <div className="min-h-[100dvh]">
+      <AppHeader teacher />
+      <main className="mx-auto max-w-7xl px-5 py-10 lg:px-10 lg:py-14">
+        <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+          <div>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[.2em] text-[hsl(var(--accent-foreground))]">
+              Teacher studio
+            </p>
+            <h1 className="mt-3 font-serif text-6xl tracking-[-.07em]">Make knowledge move.</h1>
+            <p className="mt-4 max-w-lg leading-7 text-muted-foreground">
+              A quiet dashboard for the work behind a useful course.
+            </p>
+          </div>
+          <Link
+            href="/teacher/new"
+            className="focus-ring inline-flex items-center justify-center gap-2 self-start rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1 md:self-auto"
+            data-testid="link-create-course"
+          >
+            <Plus className="h-4 w-4" />
+            Create a course
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {summaryQuery.isLoading ? (
+            [1, 2, 3, 4].map((item) => (
+              <div key={item} className="h-40 animate-pulse rounded-2xl bg-muted" />
+            ))
+          ) : (
+            <>
+              <Metric
+                label="Published"
+                value={String(summary?.publishedCount ?? 12)}
+                note="courses in the studio"
+                icon={Layers3}
+              />
+              <Metric
+                label="Learners"
+                value={String(summary?.totalLearners ?? '2,430')}
+                note="people reached so far"
+                icon={Users}
+              />
+              <Metric
+                label="Avg. rating"
+                value={(summary?.averageRating ?? 4.8).toFixed(1)}
+                note="from completed courses"
+                icon={Star}
+              />
+              <Metric
+                label="Completion"
+                value={`${summary?.completionRate ?? 76}%`}
+                note="learners seeing it through"
+                icon={BarChart3}
+              />
+            </>
+          )}
+        </div>
+        <div className="mt-14 flex items-end justify-between border-b border-border pb-4">
+          <div>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[.18em] text-muted-foreground">
+              Your recent courses
+            </p>
+            <h2 className="mt-2 font-serif text-3xl">Keep the shelf fresh.</h2>
+          </div>
+          <Link
+            href="/teacher/new"
+            className="hidden items-center gap-2 text-sm font-bold md:flex"
+            data-testid="link-add-course-inline"
+          >
+            Add another <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-6 grid gap-4 lg:grid-cols-3">
+          {recent.map((course) => (
+            <Link
+              href={`/learner/course/${course.id}`}
+              className="group focus-ring flex gap-4 rounded-2xl border border-border bg-card p-3 transition-transform hover:-translate-y-1"
+              key={course.id}
+              data-testid={`card-teacher-course-${course.id}`}
+            >
+              <div
+                className="course-swatch h-28 w-28 shrink-0 rounded-xl"
+                style={{ '--swatch': course.accent } as React.CSSProperties}
+              />
+              <div className="flex min-w-0 flex-1 flex-col justify-between py-1">
+                <div>
+                  <p className="font-mono text-[9px] uppercase tracking-[.15em] text-muted-foreground">
+                    {course.category}
+                  </p>
+                  <h3 className="mt-1 line-clamp-2 font-serif text-xl leading-tight">
+                    {course.title}
+                  </h3>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <StarRating rating={course.rating} compact />
+                  <span className="text-muted-foreground">
+                    {course.students.toLocaleString()} learners
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        {summaryQuery.isError && (
+          <p className="mt-5 text-xs text-muted-foreground" data-testid="status-teacher-demo">
+            Showing studio sample metrics while your teacher summary reconnects.
+          </p>
+        )}
+      </main>
+    </div>
+  );
 }
 
 function TeacherNewPage() {
@@ -360,13 +843,363 @@ function TeacherNewPage() {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Design');
   const [level, setLevel] = useState<CourseInputLevel>('beginner');
-  const [instructor, setInstructor] = useState('Your name');
-  const [blocks, setBlocks] = useState<ContentBlock[]>([{ id: `block-${Date.now()}`, type: ContentBlockType.video, title: 'Welcome to the course', description: 'What will learners be able to do when they finish?', duration: 10, source: null, questions: [] }]);
-  const addBlock = (type: ContentBlockType) => setBlocks((current) => [...current, { id: `block-${Date.now()}-${current.length}`, type, title: type === ContentBlockType.video ? 'New video lesson' : type === ContentBlockType.presentation ? 'New presentation' : 'New quiz', description: '', duration: 10, source: null, questions: type === ContentBlockType.quiz ? [{ prompt: 'What should learners remember?', options: ['A useful answer', 'Another option', 'A third option'], answer: 0 }] : [] }]);
-  const updateBlock = (id: string, patch: Partial<ContentBlock>) => setBlocks((current) => current.map((block) => block.id === id ? { ...block, ...patch } : block));
-  const submit = () => { if (!title.trim() || !description.trim() || !instructor.trim()) return; const data: CourseInput = { title, description, category, level, instructor, contents: blocks }; createMutation.mutate({ data }, { onSuccess: (course) => { queryClient.invalidateQueries({ queryKey: getListCoursesQueryKey({ sort: 'rating' }) }); queryClient.invalidateQueries({ queryKey: getGetTeacherSummaryQueryKey() }); setLocation(`/learner/course/${course.id}`); }, onError: () => setLocation('/teacher') }); };
-  // @ts-expect-error The compact action palette tuple is narrowed correctly at runtime.
-  return <div className="min-h-[100dvh]"><AppHeader teacher /><main className="mx-auto max-w-5xl px-5 py-10 lg:px-10 lg:py-14"><Link href="/teacher" className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground" data-testid="link-back-teacher"><ArrowLeft className="h-4 w-4" />Back to studio</Link><div className="mt-9 max-w-3xl"><p className="font-mono text-[10px] font-bold uppercase tracking-[.2em] text-[hsl(var(--accent-foreground))]">New course</p><h1 className="mt-3 font-serif text-6xl leading-[.93] tracking-[-.07em]">Give your know-how a shape.</h1><p className="mt-5 text-lg leading-8 text-muted-foreground">Start simple. You can refine the details once the useful part is on the page.</p></div><div className="mt-12 grid gap-8 lg:grid-cols-[1.2fr_.8fr]"><section className="space-y-5"><div className="studio-paper rounded-2xl border border-border p-6"><div className="grid gap-5"><label className="grid gap-2 text-sm font-semibold">Course title<input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="The skill people ask you about" className="focus-ring rounded-xl border border-input bg-background px-4 py-3 font-serif text-2xl outline-none placeholder:text-muted-foreground/60" data-testid="input-course-title" /></label><label className="grid gap-2 text-sm font-semibold">Description<textarea value={description} onChange={(event) => setDescription(event.target.value)} placeholder="What will someone be able to do after this?" rows={4} className="focus-ring resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm leading-6 outline-none placeholder:text-muted-foreground/60" data-testid="input-course-description" /></label><div className="grid gap-4 sm:grid-cols-3"><label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Category<input value={category} onChange={(event) => setCategory(event.target.value)} className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-foreground outline-none" data-testid="input-course-category" /></label><label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Level<select value={level} onChange={(event) => setLevel(event.target.value as CourseInputLevel)} className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-foreground outline-none" data-testid="select-course-level"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label><label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Teacher<input value={instructor} onChange={(event) => setInstructor(event.target.value)} className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-foreground outline-none" data-testid="input-course-instructor" /></label></div></div></div><div className="space-y-3"><div className="flex items-center justify-between"><div><p className="font-mono text-[10px] font-bold uppercase tracking-[.16em] text-muted-foreground">Content blocks</p><h2 className="mt-1 font-serif text-3xl">Build the path.</h2></div><span className="font-mono text-xs text-muted-foreground">{blocks.length} blocks</span></div>{blocks.map((block, index) => <div className="rounded-2xl border border-border bg-card p-5" key={block.id}><div className="flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary"><BlockIcon type={block.type} /></span><div className="flex-1"><p className="font-mono text-[9px] uppercase tracking-[.15em] text-muted-foreground">Block {String(index + 1).padStart(2, '0')} · {block.type}</p><input value={block.title} onChange={(event) => updateBlock(block.id, { title: event.target.value })} className="focus-ring mt-1 w-full bg-transparent font-serif text-xl outline-none" data-testid={`input-block-title-${block.id}`} /></div>{blocks.length > 1 && <button type="button" onClick={() => setBlocks((current) => current.filter((item) => item.id !== block.id))} className="focus-ring rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground" data-testid={`button-remove-block-${block.id}`}><X className="h-4 w-4" /></button>}</div><div className="mt-4 grid gap-4 sm:grid-cols-[1fr_100px]"><textarea value={block.description} onChange={(event) => updateBlock(block.id, { description: event.target.value })} rows={2} placeholder="What happens in this block?" className="focus-ring resize-none rounded-xl border border-input bg-background px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground" data-testid={`input-block-description-${block.id}`} /><label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Minutes<input type="number" min="1" value={block.duration} onChange={(event) => updateBlock(block.id, { duration: Number(event.target.value) })} className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal tracking-normal text-foreground outline-none" data-testid={`input-block-duration-${block.id}`} /></label></div>{block.type === ContentBlockType.quiz && <div className="mt-4 rounded-xl bg-muted p-4"><p className="font-mono text-[10px] font-bold uppercase tracking-[.14em] text-muted-foreground">Quiz prompt</p><input value={block.questions[0]?.prompt || ''} onChange={(event) => updateBlock(block.id, { questions: [{ ...(block.questions[0] || { options: [], answer: 0 }), prompt: event.target.value }] })} className="focus-ring mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none" data-testid={`input-quiz-prompt-${block.id}`} /><p className="mt-3 text-xs text-muted-foreground">The first answer is treated as correct in this starter quiz.</p></div>}</div>)}</div></section><aside className="lg:pt-8"><div className="studio-paper sticky top-24 rounded-2xl border border-border p-5"><p className="font-mono text-[10px] font-bold uppercase tracking-[.16em] text-muted-foreground">Add a block</p><div className="mt-3 grid gap-2">{[[ContentBlockType.video, 'Video', Film], [ContentBlockType.presentation, 'Presentation', Presentation], [ContentBlockType.quiz, 'Quiz', FileQuestion]].map(([type, label, Icon]) => <button type="button" key={type} onClick={() => addBlock(type as ContentBlockType)} className="focus-ring flex items-center gap-3 rounded-xl border border-border px-3 py-3 text-left text-sm font-semibold transition-colors hover:bg-muted" data-testid={`button-add-${type}`}><span className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary"><Icon className="h-4 w-4" /></span>{label}<Plus className="ml-auto h-4 w-4 text-muted-foreground" /></button>)}</div><div className="mt-7 border-t border-border pt-5"><p className="text-xs leading-5 text-muted-foreground">You can publish a useful first draft now and improve it as learners ask better questions.</p><button type="button" onClick={submit} disabled={!title.trim() || !description.trim() || createMutation.isPending} className="focus-ring mt-5 w-full rounded-full bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground disabled:cursor-not-allowed disabled:opacity-45" data-testid="button-publish-course">{createMutation.isPending ? 'Publishing…' : 'Publish course'}</button></div></div></aside></div></main></div>;
+  const [instructor, setInstructor] = useState('Studio Instructor');
+  const [publishError, setPublishError] = useState<string | null>(null);
+  const [blocks, setBlocks] = useState<ContentBlock[]>([
+    {
+      id: `block-${Date.now()}`,
+      type: ContentBlockType.video,
+      title: 'Welcome to the course',
+      description: 'What will learners be able to do when they finish?',
+      duration: 10,
+      source: 'https://www.youtube.com/embed/aqz-KE-bpKQ',
+      questions: [],
+    },
+  ]);
+
+  const addBlock = (type: ContentBlockType) =>
+    setBlocks((current) => [
+      ...current,
+      {
+        id: `block-${Date.now()}-${current.length}`,
+        type,
+        title:
+          type === ContentBlockType.video
+            ? 'New video lesson'
+            : type === ContentBlockType.presentation
+              ? 'New presentation'
+              : 'New quiz',
+        description: '',
+        duration: 10,
+        source: type === ContentBlockType.video ? 'https://www.youtube.com/embed/aqz-KE-bpKQ' : null,
+        questions:
+          type === ContentBlockType.quiz
+            ? [
+                {
+                  prompt: 'What key concept should learners remember?',
+                  options: ['A core useful method', 'An unnecessary distraction', 'A misconception'],
+                  answer: 0,
+                },
+              ]
+            : [],
+      },
+    ]);
+
+  const updateBlock = (id: string, patch: Partial<ContentBlock>) =>
+    setBlocks((current) =>
+      current.map((block) => (block.id === id ? { ...block, ...patch } : block))
+    );
+
+  const submit = () => {
+    if (!title.trim() || !description.trim() || !instructor.trim()) return;
+    setPublishError(null);
+    const data: CourseInput = { title, description, category, level, instructor, contents: blocks };
+    createMutation.mutate(
+      { data },
+      {
+        onSuccess: (course) => {
+          queryClient.invalidateQueries({ queryKey: getListCoursesQueryKey({ sort: 'rating' }) });
+          queryClient.invalidateQueries({ queryKey: getGetTeacherSummaryQueryKey() });
+          setLocation(`/learner/course/${course.id}`);
+        },
+        onError: (err: any) => {
+          setPublishError(err?.data?.error || err?.message || 'Failed to publish course. Please try again.');
+        },
+      }
+    );
+  };
+
+  return (
+    <div className="min-h-[100dvh]">
+      <AppHeader teacher />
+      <main className="mx-auto max-w-5xl px-5 py-10 lg:px-10 lg:py-14">
+        <Link
+          href="/teacher"
+          className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
+          data-testid="link-back-teacher"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to studio
+        </Link>
+        <div className="mt-9 max-w-3xl">
+          <p className="font-mono text-[10px] font-bold uppercase tracking-[.2em] text-[hsl(var(--accent-foreground))]">
+            New course
+          </p>
+          <h1 className="mt-3 font-serif text-6xl leading-[.93] tracking-[-.07em]">
+            Give your know-how a shape.
+          </h1>
+          <p className="mt-5 text-lg leading-8 text-muted-foreground">
+            Start simple. You can refine the details once the useful part is on the page.
+          </p>
+        </div>
+
+        {publishError && (
+          <div className="mt-6 rounded-2xl border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
+            {publishError}
+          </div>
+        )}
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_.8fr]">
+          <section className="space-y-5">
+            <div className="studio-paper rounded-2xl border border-border p-6">
+              <div className="grid gap-5">
+                <label className="grid gap-2 text-sm font-semibold">
+                  Course title
+                  <input
+                    value={title}
+                    onChange={(event) => setTitle(event.target.value)}
+                    placeholder="The skill people ask you about"
+                    className="focus-ring rounded-xl border border-input bg-background px-4 py-3 font-serif text-2xl outline-none placeholder:text-muted-foreground/60"
+                    data-testid="input-course-title"
+                  />
+                </label>
+                <label className="grid gap-2 text-sm font-semibold">
+                  Description
+                  <textarea
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
+                    placeholder="What will someone be able to do after this?"
+                    rows={4}
+                    className="focus-ring resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm leading-6 outline-none placeholder:text-muted-foreground/60"
+                    data-testid="input-course-description"
+                  />
+                </label>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    Category
+                    <input
+                      value={category}
+                      onChange={(event) => setCategory(event.target.value)}
+                      className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-foreground outline-none"
+                      data-testid="input-course-category"
+                    />
+                  </label>
+                  <label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    Level
+                    <select
+                      value={level}
+                      onChange={(event) => setLevel(event.target.value as CourseInputLevel)}
+                      className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-foreground outline-none"
+                      data-testid="select-course-level"
+                    >
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="advanced">Advanced</option>
+                    </select>
+                  </label>
+                  <label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    Teacher
+                    <input
+                      value={instructor}
+                      onChange={(event) => setInstructor(event.target.value)}
+                      className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal normal-case tracking-normal text-foreground outline-none"
+                      data-testid="input-course-instructor"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[.16em] text-muted-foreground">
+                    Content blocks
+                  </p>
+                  <h2 className="mt-1 font-serif text-3xl">Build the path.</h2>
+                </div>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {blocks.length} blocks
+                </span>
+              </div>
+              {blocks.map((block, index) => (
+                <div className="rounded-2xl border border-border bg-card p-5" key={block.id}>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary">
+                      <BlockIcon type={block.type} />
+                    </span>
+                    <div className="flex-1">
+                      <p className="font-mono text-[9px] uppercase tracking-[.15em] text-muted-foreground">
+                        Block {String(index + 1).padStart(2, '0')} · {block.type}
+                      </p>
+                      <input
+                        value={block.title}
+                        onChange={(event) => updateBlock(block.id, { title: event.target.value })}
+                        className="focus-ring mt-1 w-full bg-transparent font-serif text-xl outline-none"
+                        data-testid={`input-block-title-${block.id}`}
+                      />
+                    </div>
+                    {blocks.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setBlocks((current) => current.filter((item) => item.id !== block.id))
+                        }
+                        className="focus-ring rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+                        data-testid={`button-remove-block-${block.id}`}
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_100px]">
+                    <textarea
+                      value={block.description}
+                      onChange={(event) =>
+                        updateBlock(block.id, { description: event.target.value })
+                      }
+                      rows={2}
+                      placeholder="What happens in this block?"
+                      className="focus-ring resize-none rounded-xl border border-input bg-background px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground"
+                      data-testid={`input-block-description-${block.id}`}
+                    />
+                    <label className="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Minutes
+                      <input
+                        type="number"
+                        min="1"
+                        value={block.duration}
+                        onChange={(event) =>
+                          updateBlock(block.id, { duration: Number(event.target.value) })
+                        }
+                        className="focus-ring rounded-xl border border-input bg-background px-3 py-2.5 text-sm font-normal tracking-normal text-foreground outline-none"
+                        data-testid={`input-block-duration-${block.id}`}
+                      />
+                    </label>
+                  </div>
+
+                  {/* Media Link input for video and presentation blocks */}
+                  {(block.type === ContentBlockType.video ||
+                    block.type === ContentBlockType.presentation) && (
+                    <div className="mt-3">
+                      <label className="grid gap-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                        Embed Link (YouTube / Slides / Media URL)
+                        <input
+                          value={block.source || ''}
+                          onChange={(event) =>
+                            updateBlock(block.id, { source: event.target.value })
+                          }
+                          placeholder="https://www.youtube.com/embed/..."
+                          className="focus-ring rounded-xl border border-input bg-background px-3 py-2 text-xs font-normal normal-case tracking-normal text-foreground outline-none"
+                          data-testid={`input-block-source-${block.id}`}
+                        />
+                      </label>
+                    </div>
+                  )}
+
+                  {block.type === ContentBlockType.quiz && (
+                    <div className="mt-4 rounded-xl bg-muted p-4">
+                      <p className="font-mono text-[10px] font-bold uppercase tracking-[.14em] text-muted-foreground">
+                        Quiz prompt
+                      </p>
+                      <input
+                        value={block.questions[0]?.prompt || ''}
+                        onChange={(event) =>
+                          updateBlock(block.id, {
+                            questions: [
+                              {
+                                ...(block.questions[0] || { options: ['Option 1', 'Option 2'], answer: 0 }),
+                                prompt: event.target.value,
+                              },
+                            ],
+                          })
+                        }
+                        className="focus-ring mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none"
+                        data-testid={`input-quiz-prompt-${block.id}`}
+                      />
+                      <div className="mt-3 space-y-2">
+                        <p className="text-xs font-bold text-muted-foreground">Answer choices:</p>
+                        {(block.questions[0]?.options || ['Option 1', 'Option 2', 'Option 3']).map((opt, optIndex) => (
+                          <div key={optIndex} className="flex items-center gap-2">
+                            <input
+                              type="radio"
+                              name={`quiz-answer-${block.id}`}
+                              checked={block.questions[0]?.answer === optIndex}
+                              onChange={() =>
+                                updateBlock(block.id, {
+                                  questions: [
+                                    {
+                                      ...(block.questions[0] || { prompt: '', options: [] }),
+                                      answer: optIndex,
+                                    },
+                                  ],
+                                })
+                              }
+                            />
+                            <input
+                              value={opt}
+                              onChange={(event) => {
+                                const newOpts = [...(block.questions[0]?.options || [])];
+                                newOpts[optIndex] = event.target.value;
+                                updateBlock(block.id, {
+                                  questions: [
+                                    {
+                                      ...(block.questions[0] || { prompt: '', answer: 0 }),
+                                      options: newOpts,
+                                    },
+                                  ],
+                                });
+                              }}
+                              className="rounded-lg border border-input bg-background px-2.5 py-1 text-xs outline-none flex-1"
+                            />
+                            {block.questions[0]?.answer === optIndex && (
+                              <span className="text-[10px] font-bold text-primary uppercase">Correct</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+          <aside className="lg:pt-8">
+            <div className="studio-paper sticky top-24 rounded-2xl border border-border p-5">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[.16em] text-muted-foreground">
+                Add a block
+              </p>
+              <div className="mt-3 grid gap-2">
+                {([
+                  [ContentBlockType.video, 'Video', Film],
+                  [ContentBlockType.presentation, 'Presentation', Presentation],
+                  [ContentBlockType.quiz, 'Quiz', FileQuestion],
+                ] as const).map(([type, label, Icon]) => (
+                  <button
+                    type="button"
+                    key={type}
+                    onClick={() => addBlock(type as ContentBlockType)}
+                    className="focus-ring flex items-center gap-3 rounded-xl border border-border px-3 py-3 text-left text-sm font-semibold transition-colors hover:bg-muted"
+                    data-testid={`button-add-${type}`}
+                  >
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    {label}
+                    <Plus className="ml-auto h-4 w-4 text-muted-foreground" />
+                  </button>
+                ))}
+              </div>
+              <div className="mt-7 border-t border-border pt-5">
+                <p className="text-xs leading-5 text-muted-foreground">
+                  You can publish a useful first draft now and improve it as learners ask better
+                  questions.
+                </p>
+                <button
+                  type="button"
+                  onClick={submit}
+                  disabled={!title.trim() || !description.trim() || createMutation.isPending}
+                  className="focus-ring mt-5 w-full rounded-full bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground disabled:cursor-not-allowed disabled:opacity-45"
+                  data-testid="button-publish-course"
+                >
+                  {createMutation.isPending ? 'Publishing…' : 'Publish course'}
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+  );
 }
 
 function AuthShell({ mode }: { mode: 'sign-in' | 'sign-up' }) {
@@ -374,8 +1207,8 @@ function AuthShell({ mode }: { mode: 'sign-in' | 'sign-up' }) {
   return <main className="studio-grain grid min-h-[100dvh] bg-foreground lg:grid-cols-[.9fr_1.1fr]"><section className="relative hidden overflow-hidden p-10 text-background lg:flex lg:flex-col lg:justify-between"><Logo inverse /><div className="relative z-10 max-w-lg pb-10"><p className="font-mono text-[10px] uppercase tracking-[.2em] text-primary">A focused place to begin</p><h1 className="mt-5 font-serif text-7xl leading-[.9] tracking-[-.07em]">{mode === 'sign-in' ? 'Good to see you again.' : 'Bring your curiosity.'}</h1><p className="mt-6 max-w-md text-base leading-7 text-background/65">{mode === 'sign-in' ? 'Your shelf is waiting — pick up exactly where you left off.' : 'Make room for useful knowledge, taught by people who have put it to work.'}</p></div><div className="absolute -right-24 top-1/3 h-72 w-72 rounded-full border-[36px] border-primary/80" /><div className="absolute bottom-24 right-20 h-24 w-24 rotate-12 bg-[hsl(var(--accent))]" /></section><section className="flex flex-col items-center justify-center bg-background px-5 py-8"><div className="mb-8 flex w-full max-w-[440px] items-center justify-between lg:hidden"><Logo /><Link href="/" className="text-sm font-semibold text-muted-foreground" data-testid="link-auth-home">Home</Link></div>{hasClerk ? mode === 'sign-in' ? <SignIn routing="path" path={`${basePath}/sign-in`} signUpUrl={`${basePath}/sign-up`} /> : <SignUp routing="path" path={`${basePath}/sign-up`} signInUrl={`${basePath}/sign-in`} /> : <div className="w-full max-w-[440px] rounded-[2rem] border border-border bg-card p-7 shadow-xl"><Logo /><h1 className="mt-10 font-serif text-4xl tracking-[-.05em]">{mode === 'sign-in' ? 'Welcome back' : 'Create your account'}</h1><p className="mt-3 text-sm leading-6 text-muted-foreground">Clerk is ready to connect in your deployed environment. In the meantime, take a look around the learning studio.</p><Link href="/portal" className="focus-ring mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground" data-testid="link-auth-demo-portal">Continue to preview <ArrowRight className="h-4 w-4" /></Link><div className="mt-6 border-t border-border pt-5 text-center text-sm text-muted-foreground">{mode === 'sign-in' ? <>New here? <Link href="/sign-up" className="font-bold text-foreground" data-testid="link-auth-switch-sign-up">Create an account</Link></> : <>Already a member? <Link href="/sign-in" className="font-bold text-foreground" data-testid="link-auth-switch-sign-in">Sign in</Link></>}</div></div>}{mode === 'sign-up' && <div className="mt-5 flex w-full max-w-[440px] items-start gap-3 rounded-xl bg-secondary/50 p-4 text-xs leading-5 text-muted-foreground"><button type="button" onClick={() => setShowPhoneHint((current) => !current)} className="focus-ring mt-0.5 shrink-0 rounded-full bg-foreground px-2 py-0.5 font-mono text-[9px] font-bold text-background" data-testid="button-phone-info">i</button><span>{showPhoneHint ? 'Phone numbers are collected after sign-up during onboarding. SkillShare does not use phone SMS for sign-in.' : 'You can add a phone number after creating your account during onboarding.'}</span></div>}</section></main>;
 }
 
-function AppRouter() {
-  return <Switch><Route path="/" component={LandingPage} /><Route path="/sign-in/*?" component={() => <AuthShell mode="sign-in" />} /><Route path="/sign-up/*?" component={() => <AuthShell mode="sign-up" />} /><Route path="/portal" component={PortalPage} /><Route path="/learner" component={LearnerPage} /><Route path="/learner/course/:courseId" component={CourseDetailPage} /><Route path="/teacher" component={TeacherPage} /><Route path="/teacher/new" component={TeacherNewPage} /><Route component={NotFound} /></Switch>;
+ function AppRouter() {
+  return <><ThemeToggle /><Switch><Route path="/" component={LandingPage} /><Route path="/sign-in/*?" component={() => <AuthShell mode="sign-in" />} /><Route path="/sign-up/*?" component={() => <AuthShell mode="sign-up" />} /><Route path="/portal" component={PortalPage} /><Route path="/learner" component={LearnerPage} /><Route path="/learner/course/:courseId" component={CourseDetailPage} /><Route path="/teacher" component={TeacherPage} /><Route path="/teacher/new" component={TeacherNewPage} /><Route component={NotFound} /></Switch></>;
 }
 
 function ClerkQueryClientCacheInvalidator() {
@@ -391,7 +1224,7 @@ function ClerkQueryClientCacheInvalidator() {
 }
 
 function App() {
-  const appearance = { theme: shadcn, cssLayerName: 'clerk', options: { logoPlacement: 'inside' as const, logoLinkUrl: basePath || '/', logoImageUrl: `${window.location.origin}${basePath}/logo.svg` }, variables: { colorPrimary: '#E5A845', colorForeground: '#183B4F', colorMutedForeground: '#6A7880', colorBackground: '#FFF8EB', colorInput: '#FFFDF8', colorInputForeground: '#183B4F', colorDanger: '#C85D52', colorNeutral: '#DCCFB9', fontFamily: 'DM Sans', borderRadius: '1rem' }, elements: { rootBox: 'w-full flex justify-center', cardBox: 'bg-[#FFF8EB] rounded-[2rem] w-[440px] max-w-full overflow-hidden shadow-xl', card: '!shadow-none !border-0 !bg-transparent !rounded-none', footer: '!shadow-none !border-0 !bg-transparent !rounded-none', headerTitle: '!text-[#183B4F] !font-serif', headerSubtitle: '!text-[#6A7880]', socialButtonsBlockButtonText: '!text-[#183B4F]', formFieldLabel: '!text-[#183B4F]', footerActionLink: '!text-[#183B4F] !font-bold', footerActionText: '!text-[#6A7880]', dividerText: '!text-[#6A7880]', identityPreviewEditButton: '!text-[#183B4F]', formFieldSuccessText: '!text-[#356B62]', alertText: '!text-[#183B4F]', logoBox: 'mb-2', logoImage: 'h-9', socialButtonsBlockButton: '!border-[#DCCFB9] !bg-[#FFFDF8]', formButtonPrimary: '!bg-[#E5A845] !text-[#183B4F] hover:!bg-[#D99A35]', formFieldInput: '!border-[#DCCFB9] !bg-[#FFFDF8] !text-[#183B4F]', footerAction: '!bg-transparent', dividerLine: '!bg-[#DCCFB9]', alert: '!bg-[#F1E6D1]', otpCodeFieldInput: '!border-[#DCCFB9]', formFieldRow: 'mb-4', main: 'px-2' } };
+  const appearance = { theme: shadcn, cssLayerName: 'clerk', options: { logoPlacement: 'inside' as const, logoLinkUrl: basePath || '/', logoImageUrl: `${window.location.origin}${basePath}/logo.svg` }, variables: { colorPrimary: '#14B8C4', colorForeground: '#0B3141', colorMutedForeground: '#5E7580', colorBackground: '#F4FCFD', colorInput: '#FFFFFF', colorInputForeground: '#0B3141', colorDanger: '#C05A71', colorNeutral: '#C6DDE1', fontFamily: 'DM Sans', borderRadius: '1rem' }, elements: { rootBox: 'w-full flex justify-center', cardBox: 'bg-[#F4FCFD] rounded-[2rem] w-[440px] max-w-full overflow-hidden shadow-xl', card: '!shadow-none !border-0 !bg-transparent !rounded-none', footer: '!shadow-none !border-0 !bg-transparent !rounded-none', headerTitle: '!text-[#0B3141] !font-serif', headerSubtitle: '!text-[#5E7580]', socialButtonsBlockButtonText: '!text-[#0B3141]', formFieldLabel: '!text-[#0B3141]', footerActionLink: '!text-[#0B3141] !font-bold', footerActionText: '!text-[#5E7580]', dividerText: '!text-[#5E7580]', identityPreviewEditButton: '!text-[#0B3141]', formFieldSuccessText: '!text-[#2B8C8D]', alertText: '!text-[#0B3141]', logoBox: 'mb-2', logoImage: 'h-9', socialButtonsBlockButton: '!border-[#C6DDE1] !bg-[#FFFFFF]', formButtonPrimary: '!bg-[#14B8C4] !text-[#0B3141] hover:!bg-[#1098A4]', formFieldInput: '!border-[#C6DDE1] !bg-[#FFFFFF] !text-[#0B3141]', footerAction: '!bg-transparent', dividerLine: '!bg-[#C6DDE1]', alert: '!bg-[#E5F3F5]', otpCodeFieldInput: '!border-[#C6DDE1]', formFieldRow: 'mb-4', main: 'px-2' } };
   const router = <WouterRouter base={basePath}><AppRouter /></WouterRouter>;
   return <QueryClientProvider client={queryClient}>{hasClerk ? <ClerkProvider publishableKey={clerkPubKey} proxyUrl={clerkProxyUrl} appearance={appearance} signInUrl={`${basePath}/sign-in`} signUpUrl={`${basePath}/sign-up`} localization={{ signIn: { start: { title: 'Welcome back', subtitle: 'Pick up where you left off' } }, signUp: { start: { title: 'Create your account', subtitle: 'Make room for useful knowledge' } } }}>{router}<ClerkQueryClientCacheInvalidator /></ClerkProvider> : router}</QueryClientProvider>;
 }

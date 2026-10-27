@@ -1,0 +1,666 @@
+{
+  "users": [
+    {
+      "id": "demo-user-1",
+      "email": "learner@skillexchanger.com",
+      "fullName": "Curious Learner",
+      "role": "learner",
+      "createdAt": "2026-10-27T15:56:05.787Z"
+    },
+    {
+      "id": "demo-teacher-1",
+      "email": "teacher@skillexchanger.com",
+      "fullName": "Studio Instructor",
+      "role": "teacher",
+      "createdAt": "2026-10-27T15:56:05.789Z"
+    },
+    {
+      "id": "demo-learner-1",
+      "email": "demo-learner-1@skillexchanger.com",
+      "fullName": "Curious Learner",
+      "role": "learner",
+      "createdAt": "2026-10-27T15:56:06.011Z"
+    },
+    {
+      "id": "test-learner-1",
+      "email": "test-learner-1@skillexchanger.com",
+      "fullName": "Curious Learner",
+      "role": "learner",
+      "createdAt": "2026-10-27T15:56:06.045Z"
+    },
+    {
+      "id": "test-teacher-1",
+      "email": "test-teacher-1@skillexchanger.com",
+      "fullName": "Studio Instructor",
+      "role": "teacher",
+      "createdAt": "2026-10-27T15:56:06.173Z"
+    },
+    {
+      "id": "test-learner-1793116884474",
+      "email": "test-learner-1793116884474@skillexchanger.com",
+      "fullName": "Curious Learner",
+      "role": "learner",
+      "createdAt": "2026-10-27T16:01:24.615Z"
+    },
+    {
+      "id": "test-learner-1793116978919",
+      "email": "test-learner-1793116978919@skillexchanger.com",
+      "fullName": "Curious Learner",
+      "role": "learner",
+      "createdAt": "2026-10-27T16:02:59.066Z"
+    },
+    {
+      "id": "test-learner-1793124917101",
+      "email": "test-learner-1793124917101@skillexchanger.com",
+      "fullName": "Curious Learner",
+      "role": "learner",
+      "createdAt": "2026-10-27T18:15:17.217Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": "course-1793128292973",
+      "title": "Test Automation with TypeScript",
+      "description": "Learn end-to-end testing and integration workflows.",
+      "category": "Code & design",
+      "level": "intermediate",
+      "instructor": "Senior Architect",
+      "instructorInitials": "SA",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 20,
+      "students": 0,
+      "accent": "#7B6FE8",
+      "teacherId": "test-teacher-1",
+      "contents": [
+        {
+          "id": "b-1",
+          "type": "video",
+          "title": "Intro to integration tests",
+          "description": "How to run test suites.",
+          "duration": 15,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "b-2",
+          "type": "quiz",
+          "title": "Testing check",
+          "description": "Verify knowledge.",
+          "duration": 5,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What is an assertion?",
+              "options": [
+                "A check",
+                "A loop",
+                "A string"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:11:33.003Z"
+    },
+    {
+      "id": "course-1793124917334",
+      "title": "Test Automation with TypeScript",
+      "description": "Learn end-to-end testing and integration workflows.",
+      "category": "Code & design",
+      "level": "intermediate",
+      "instructor": "Senior Architect",
+      "instructorInitials": "SA",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 20,
+      "students": 0,
+      "accent": "#7B6FE8",
+      "teacherId": "test-teacher-1",
+      "contents": [
+        {
+          "id": "b-1",
+          "type": "video",
+          "title": "Intro to integration tests",
+          "description": "How to run test suites.",
+          "duration": 15,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "b-2",
+          "type": "quiz",
+          "title": "Testing check",
+          "description": "Verify knowledge.",
+          "duration": 5,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What is an assertion?",
+              "options": [
+                "A check",
+                "A loop",
+                "A string"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T18:15:17.334Z"
+    },
+    {
+      "id": "course-1793121849803",
+      "title": "Python",
+      "description": "Lorem imous xkj wjishla dnl bjadl fnjb",
+      "category": "Design",
+      "level": "beginner",
+      "instructor": "Studio Instructor",
+      "instructorInitials": "SI",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 10,
+      "students": 0,
+      "accent": "#F4AD4B",
+      "teacherId": "demo-learner-1",
+      "contents": [
+        {
+          "id": "block-1793121837123",
+          "type": "video",
+          "title": "Welcome to the course",
+          "description": "What will learners be able to do when they finish?",
+          "duration": 10,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        }
+      ],
+      "createdAt": "2026-10-27T17:24:09.803Z"
+    },
+    {
+      "id": "course-1793116979191",
+      "title": "Test Automation with TypeScript",
+      "description": "Learn end-to-end testing and integration workflows.",
+      "category": "Code & design",
+      "level": "intermediate",
+      "instructor": "Senior Architect",
+      "instructorInitials": "SA",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 20,
+      "students": 0,
+      "accent": "#4FA3B1",
+      "teacherId": "test-teacher-1",
+      "contents": [
+        {
+          "id": "b-1",
+          "type": "video",
+          "title": "Intro to integration tests",
+          "description": "How to run test suites.",
+          "duration": 15,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "b-2",
+          "type": "quiz",
+          "title": "Testing check",
+          "description": "Verify knowledge.",
+          "duration": 5,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What is an assertion?",
+              "options": [
+                "A check",
+                "A loop",
+                "A string"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T16:02:59.191Z"
+    },
+    {
+      "id": "course-1793116884733",
+      "title": "Test Automation with TypeScript",
+      "description": "Learn end-to-end testing and integration workflows.",
+      "category": "Code & design",
+      "level": "intermediate",
+      "instructor": "Senior Architect",
+      "instructorInitials": "SA",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 20,
+      "students": 0,
+      "accent": "#50C7B7",
+      "teacherId": "test-teacher-1",
+      "contents": [
+        {
+          "id": "b-1",
+          "type": "video",
+          "title": "Intro to integration tests",
+          "description": "How to run test suites.",
+          "duration": 15,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "b-2",
+          "type": "quiz",
+          "title": "Testing check",
+          "description": "Verify knowledge.",
+          "duration": 5,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What is an assertion?",
+              "options": [
+                "A check",
+                "A loop",
+                "A string"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T16:01:24.733Z"
+    },
+    {
+      "id": "course-1793116850422",
+      "title": "Test Automation with TypeScript",
+      "description": "Learn end-to-end testing and integration workflows.",
+      "category": "Code & design",
+      "level": "intermediate",
+      "instructor": "Senior Architect",
+      "instructorInitials": "SA",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 20,
+      "students": 0,
+      "accent": "#7B6FE8",
+      "teacherId": "test-teacher-1",
+      "contents": [
+        {
+          "id": "b-1",
+          "type": "video",
+          "title": "Intro to integration tests",
+          "description": "How to run test suites.",
+          "duration": 15,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "b-2",
+          "type": "quiz",
+          "title": "Testing check",
+          "description": "Verify knowledge.",
+          "duration": 5,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What is an assertion?",
+              "options": [
+                "A check",
+                "A loop",
+                "A string"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T16:00:50.423Z"
+    },
+    {
+      "id": "course-1793116566177",
+      "title": "Test Automation with TypeScript",
+      "description": "Learn end-to-end testing and integration workflows.",
+      "category": "Code & design",
+      "level": "intermediate",
+      "instructor": "Senior Architect",
+      "instructorInitials": "SA",
+      "rating": 0,
+      "ratingCount": 0,
+      "duration": 20,
+      "students": 0,
+      "accent": "#14B8C4",
+      "teacherId": "test-teacher-1",
+      "contents": [
+        {
+          "id": "b-1",
+          "type": "video",
+          "title": "Intro to integration tests",
+          "description": "How to run test suites.",
+          "duration": 15,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "b-2",
+          "type": "quiz",
+          "title": "Testing check",
+          "description": "Verify knowledge.",
+          "duration": 5,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What is an assertion?",
+              "options": [
+                "A check",
+                "A loop",
+                "A string"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T15:56:06.178Z"
+    },
+    {
+      "id": "course-creative-coding",
+      "title": "Creative Coding with JavaScript",
+      "description": "Make playful, interactive sketches while learning the fundamentals of JavaScript.",
+      "category": "Code & design",
+      "level": "beginner",
+      "instructor": "Maya Patel",
+      "instructorInitials": "MP",
+      "rating": 5,
+      "ratingCount": 4,
+      "duration": 94,
+      "students": 1846,
+      "accent": "#14B8C4",
+      "teacherId": "teacher-maya-patel",
+      "createdAt": "2026-09-15T09:00:00.000Z",
+      "contents": [
+        {
+          "id": "cc-1",
+          "type": "video",
+          "title": "Your first interactive sketch",
+          "description": "Learn the building blocks of a canvas sketch and make something move in the browser.",
+          "duration": 18,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "cc-2",
+          "type": "presentation",
+          "title": "Thinking in loops and vectors",
+          "description": "A visual guide to loops, frame refreshes, conditions, and playful generative patterns.",
+          "duration": 22,
+          "source": "https://www.slideshare.net/slideshow/embed_code/key/creative-coding-loops",
+          "questions": []
+        },
+        {
+          "id": "cc-3",
+          "type": "quiz",
+          "title": "Check your foundations",
+          "description": "A quick confidence check before you build your own autonomous sketch.",
+          "duration": 8,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "Which programming construct is used to repeat drawing operations across frame buffers?",
+              "options": [
+                "A loop",
+                "A constant",
+                "A single string literal"
+              ],
+              "answer": 0
+            },
+            {
+              "prompt": "What coordinate is at the top-left of standard HTML5 canvas?",
+              "options": [
+                "(0, 0)",
+                "(100, 100)",
+                "(-1, -1)"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "course-storytelling",
+      "title": "Storytelling for Presentations",
+      "description": "Turn a pile of ideas into a clear narrative your audience remembers and acts upon.",
+      "category": "Communication",
+      "level": "intermediate",
+      "instructor": "Jon Bell",
+      "instructorInitials": "JB",
+      "rating": 4.8,
+      "ratingCount": 96,
+      "duration": 76,
+      "students": 1206,
+      "accent": "#7B6FE8",
+      "teacherId": "teacher-jon-bell",
+      "createdAt": "2026-09-10T09:00:00.000Z",
+      "contents": [
+        {
+          "id": "st-1",
+          "type": "presentation",
+          "title": "The story spine",
+          "description": "A simple, repeatable structure for making any presentation easier to follow.",
+          "duration": 26,
+          "source": null,
+          "questions": []
+        },
+        {
+          "id": "st-2",
+          "type": "video",
+          "title": "Make the opening matter",
+          "description": "Watch a live teardown of three different presentation openings and why tension works.",
+          "duration": 24,
+          "source": "https://www.youtube.com/embed/ysz5S6PUM-U",
+          "questions": []
+        },
+        {
+          "id": "st-3",
+          "type": "quiz",
+          "title": "Narrative checkpoint",
+          "description": "Put the key components of a strong presentation opening in the right order.",
+          "duration": 7,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What captures an audience's attention first?",
+              "options": [
+                "A lengthy agenda",
+                "A clear tension or relatable problem",
+                "A company timeline"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "course-watercolor",
+      "title": "Watercolor Landscapes",
+      "description": "Paint calm, atmospheric landscapes with a small palette, clean washes, and a loose hand.",
+      "category": "Art & craft",
+      "level": "beginner",
+      "instructor": "Elena Rossi",
+      "instructorInitials": "ER",
+      "rating": 4.7,
+      "ratingCount": 74,
+      "duration": 112,
+      "students": 894,
+      "accent": "#50C7B7",
+      "teacherId": "teacher-elena-rossi",
+      "createdAt": "2026-09-06T09:00:00.000Z",
+      "contents": [
+        {
+          "id": "wl-1",
+          "type": "video",
+          "title": "Light before detail",
+          "description": "Build a sense of atmospheric depth with clean washes before adding foreground marks.",
+          "duration": 31,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "wl-2",
+          "type": "presentation",
+          "title": "A pocket palette",
+          "description": "Learn how four complementary pigments can create an entire glowing horizon.",
+          "duration": 19,
+          "source": null,
+          "questions": []
+        }
+      ]
+    },
+    {
+      "id": "course-freelance",
+      "title": "Build a Freelance Practice",
+      "description": "Set up a repeatable client workflow that protects your focus and leaves room for better work.",
+      "category": "Business",
+      "level": "advanced",
+      "instructor": "Nikhil Shah",
+      "instructorInitials": "NS",
+      "rating": 4.6,
+      "ratingCount": 61,
+      "duration": 88,
+      "students": 642,
+      "accent": "#4FA3B1",
+      "teacherId": "teacher-nikhil-shah",
+      "createdAt": "2026-08-28T09:00:00.000Z",
+      "contents": [
+        {
+          "id": "fp-1",
+          "type": "presentation",
+          "title": "Choose a clear offer",
+          "description": "Position your expertise so the right clients instantly recognize the value.",
+          "duration": 25,
+          "source": null,
+          "questions": []
+        },
+        {
+          "id": "fp-2",
+          "type": "video",
+          "title": "The client kickoff",
+          "description": "A practical walkthrough of a calm, structured kickoff call that sets boundaries.",
+          "duration": 28,
+          "source": "https://www.youtube.com/embed/ysz5S6PUM-U",
+          "questions": []
+        }
+      ]
+    },
+    {
+      "id": "course-home-cooking",
+      "title": "Weeknight Cooking, Uncomplicated",
+      "description": "Build a flexible system of techniques for making nourishing food on busy days.",
+      "category": "Food & home",
+      "level": "beginner",
+      "instructor": "Ari Kim",
+      "instructorInitials": "AK",
+      "rating": 4.5,
+      "ratingCount": 49,
+      "duration": 68,
+      "students": 518,
+      "accent": "#F4AD4B",
+      "teacherId": "teacher-ari-kim",
+      "createdAt": "2026-08-20T09:00:00.000Z",
+      "contents": [
+        {
+          "id": "hc-1",
+          "type": "video",
+          "title": "Your three-pan system",
+          "description": "A synchronized rhythm for cooking seasonal vegetables, grains, and protein together.",
+          "duration": 20,
+          "source": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+          "questions": []
+        },
+        {
+          "id": "hc-2",
+          "type": "quiz",
+          "title": "Kitchen confidence check",
+          "description": "Choose the next move in a few common weeknight cooking situations.",
+          "duration": 6,
+          "source": null,
+          "questions": [
+            {
+              "prompt": "What should you do before tasting food for final salt and acid seasoning?",
+              "options": [
+                "Turn off extreme heat to protect tastebuds",
+                "Dump white sugar into the pan",
+                "Plate immediately"
+              ],
+              "answer": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "enrollment-1793116566124-1el62",
+      "userId": "test-learner-1",
+      "courseId": "course-creative-coding",
+      "completed": true,
+      "completedAt": "2026-10-27T15:56:06.124Z",
+      "createdAt": "2026-10-27T15:56:06.124Z"
+    },
+    {
+      "id": "enrollment-1793116884691-nzaqu",
+      "userId": "test-learner-1793116884474",
+      "courseId": "course-creative-coding",
+      "completed": true,
+      "completedAt": "2026-10-27T16:01:24.691Z",
+      "createdAt": "2026-10-27T16:01:24.691Z"
+    },
+    {
+      "id": "enrollment-1793116979142-429m8",
+      "userId": "test-learner-1793116978919",
+      "courseId": "course-creative-coding",
+      "completed": true,
+      "completedAt": "2026-10-27T16:02:59.142Z",
+      "createdAt": "2026-10-27T16:02:59.142Z"
+    },
+    {
+      "id": "enrollment-1793124917291-akq0n",
+      "userId": "test-learner-1793124917101",
+      "courseId": "course-creative-coding",
+      "completed": true,
+      "completedAt": "2026-10-27T18:15:17.291Z",
+      "createdAt": "2026-10-27T18:15:17.291Z"
+    }
+  ],
+  "ratings": [
+    {
+      "id": "rating-1793116566146-7wzsa",
+      "userId": "test-learner-1",
+      "courseId": "course-creative-coding",
+      "rating": 5,
+      "createdAt": "2026-10-27T15:56:06.146Z"
+    },
+    {
+      "id": "rating-1793116884709-kdv31",
+      "userId": "test-learner-1793116884474",
+      "courseId": "course-creative-coding",
+      "rating": 5,
+      "createdAt": "2026-10-27T16:01:24.709Z"
+    },
+    {
+      "id": "rating-1793116979164-ou5e6",
+      "userId": "test-learner-1793116978919",
+      "courseId": "course-creative-coding",
+      "rating": 5,
+      "createdAt": "2026-10-27T16:02:59.164Z"
+    },
+    {
+      "id": "rating-1793124917310-ebj8o",
+      "userId": "test-learner-1793124917101",
+      "courseId": "course-creative-coding",
+      "rating": 5,
+      "createdAt": "2026-10-27T18:15:17.310Z"
+    }
+  ]
+}

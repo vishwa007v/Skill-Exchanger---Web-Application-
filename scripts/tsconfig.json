@@ -5,5 +5,6 @@
     "rootDir": "src",
     "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/test-api.ts", "src/check-db.ts", "src/seed-db.ts"]
 }
